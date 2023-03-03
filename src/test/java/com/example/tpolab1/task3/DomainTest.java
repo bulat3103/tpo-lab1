@@ -26,8 +26,8 @@ public class DomainTest {
         engineerShipGoldHeart = new Human("Саша", 56, Role.ENGINEER, Feeling.SCARE, 4);
         passengerShipGoldHeart = new Human("Даня", 19, Role.PASSENGER, Feeling.SCARE, 1);
         capitanShipNoName = new Human("Толя", 40, Role.CAPITAN, Feeling.HAPPY, 5);
-        engineerShipNoName = new Human("Вася", 29, Role.ENGINEER, Feeling.LOVE, 4);
-        atom = new Atom("Водород", 1, 1);
+        engineerShipNoName = new Human("Вася", 29, Role.ENGINEER, Feeling.LOVE, 5);
+        atom = new Atom("Водород");
         molecule = new Molecule(Arrays.asList(atom, atom), "Водород");
     }
 
@@ -63,5 +63,18 @@ public class DomainTest {
         assertEquals(atom.slavesLaw("молекул"), "Водород подчиняется закону молекул");
         assertEquals(molecule.slavesLaw("физический закон"), "Водород подчиняется закону физический закон");
         assertEquals(capitanShipGoldHeart.slavesLaw("природы"), "Виктор подчиняется закону природы");
+    }
+
+    @Test
+    public void testSetFeeling() {
+        capitanShipNoName.setFeeling(Feeling.COMFORTABLE);
+        assertEquals(capitanShipNoName.getFeeling(), capitanShipNoName.getName() + "чувствует" + Feeling.COMFORTABLE.getDescription());
+    }
+
+    @Test
+    public void testSetRole() {
+        assertEquals(engineerShipGoldHeart.setRole(Role.CAPITAN), "У вас недостаточно знаний, чтобы стать капитаном");
+        assertEquals(passengerShipGoldHeart.setRole(Role.ENGINEER), "У вас недостаточно знаний, чтобы стать инженером");
+        assertEquals(engineerShipNoName.setRole(Role.CAPITAN), "Ваша новая роль - " + Role.CAPITAN);
     }
 }

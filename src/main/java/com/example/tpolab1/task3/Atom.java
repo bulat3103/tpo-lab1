@@ -2,14 +2,10 @@ package com.example.tpolab1.task3;
 
 public class Atom implements Law{
     private String nameTable;
-    private int numberTable;
-    private double weightTable;
 
 
-    public Atom(String nameTable, int numberTable, double weightTable) {
+    public Atom(String nameTable) {
         this.nameTable = nameTable;
-        this.numberTable = numberTable;
-        this.weightTable = weightTable;
     }
 
     @Override
