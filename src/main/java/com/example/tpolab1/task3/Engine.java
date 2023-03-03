@@ -1,10 +1,10 @@
 package com.example.tpolab1.task3;
 
 public enum Engine {
-    PHOTONIAN(0),
-    ELECTRIC(0),
-    REACTIVE(0),
-    ICE(0);
+    PHOTONIAN(45),
+    ELECTRIC(15),
+    REACTIVE(30),
+    ICE(10);
 
     private final double maxSpeed;
 
