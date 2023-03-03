@@ -49,6 +49,13 @@ public class Ship {
         return "Нельзя менять двигатель на ходу";
     }
 
+    public String deleteFromCrew(Human human) {
+        if (!this.crew.contains(human)) {
+            return "Этот человек не состоит в экипаже";
+        }
+        this.crew.remove(human);
+        return "Удаление прошло успешно";
+    }
     public List<Human> getCrew() {
         return crew;
     }

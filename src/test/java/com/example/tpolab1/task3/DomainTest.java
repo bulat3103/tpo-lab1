@@ -3,6 +3,7 @@ package com.example.tpolab1.task3;
 
 import com.example.tpolab1.task3.*;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -33,6 +34,7 @@ public class DomainTest {
 
     @Test
     public void testSetCrew() {
+        shipGoldHeart.deleteFromCrew(capitanShipGoldHeart);
         assertEquals(shipGoldHeart.setCrew(capitanShipGoldHeart), capitanShipGoldHeart.getName() + " успешно добавлен в экипаж");
         assertEquals(shipGoldHeart.setCrew(capitanShipGoldHeart), "Этот человек уже в экипаже");
     }
@@ -40,6 +42,7 @@ public class DomainTest {
     @Test
     public void testChangeShipEngine() {
         shipGoldHeart.setCrew(engineerShipGoldHeart);
+        shipGoldHeart.setCrew(capitanShipGoldHeart);
         assertEquals(shipGoldHeart.setEngine(Engine.REACTIVE, engineerShipNoName), "Вы не являетесь инженером этого корабля");
         assertEquals(shipGoldHeart.setEngine(Engine.REACTIVE, capitanShipGoldHeart), "Вы не инженер. У вас нет прав");
         shipGoldHeart.setCurrentSpeed(0.0, capitanShipGoldHeart);
@@ -76,5 +79,12 @@ public class DomainTest {
         assertEquals(engineerShipGoldHeart.setRole(Role.CAPITAN), "У вас недостаточно знаний, чтобы стать капитаном");
         assertEquals(passengerShipGoldHeart.setRole(Role.ENGINEER), "У вас недостаточно знаний, чтобы стать инженером");
         assertEquals(engineerShipNoName.setRole(Role.CAPITAN), "Ваша новая роль - " + Role.CAPITAN);
+    }
+
+    @Test
+    public void testDeleteFromCrew() {
+        assertEquals(shipGoldHeart.deleteFromCrew(engineerShipNoName), "Этот человек не состоит в экипаже");
+        shipGoldHeart.setCrew(passengerShipGoldHeart);
+        assertEquals(shipGoldHeart.deleteFromCrew(passengerShipGoldHeart), "Удаление прошло успешно");
     }
 }
